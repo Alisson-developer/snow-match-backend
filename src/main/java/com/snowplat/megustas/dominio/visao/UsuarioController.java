@@ -11,7 +11,7 @@ public class UsuarioController extends UsuarioBaseController implements IUsuario
 
     @Override
     public void incluir(Usuario usuario) {
-        this.incluir(usuario);
+        this.usuarioSd.incluir(usuario);
     }
 
     @Override
