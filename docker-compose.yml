@@ -1,0 +1,16 @@
+version: "3.1"
+
+services:
+
+  snowmatch:
+    image: postgres:latest
+    restart: always
+
+    environment:
+      POSTGRES_DB: snowmatch
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+
+    ports:
+      - "5432:5432"
+
