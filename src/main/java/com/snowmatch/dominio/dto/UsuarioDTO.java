@@ -1,7 +1,7 @@
-package com.snowplat.megustas.dominio.dto;
+package com.snowmatch.dominio.dto;
 
-import com.snowplat.megustas.dominio.Match;
-import com.snowplat.megustas.dominio.Usuario;
+import com.snowmatch.dominio.Match;
+import com.snowmatch.dominio.Usuario;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +28,7 @@ public class UsuarioDTO {
         this.statusLogado = usuario.getStatusLogado();
         this.idMatchCurtidos = usuario.getIdMatchCurtidos();
         this.idMatchCurtiram = usuario.getIdMatchCurtiram();
-        this.dataCriacao = usuario.getDataCriacao();
+        this.dataCriacao = usuario.getEntidadeBase().getDataCriacao();
     }
 
     public UUID getId() {

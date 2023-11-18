@@ -1,4 +1,4 @@
-package com.snowplat.megustas.dominio.vo;
+package com.snowmatch.dominio.vo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -7,7 +7,7 @@ import jakarta.persistence.Version;
 import java.util.Date;
 import org.hibernate.type.NumericBooleanConverter;
 
-
+@Embeddable
 public class EntidadeBase {
 
     @Column(name = "DT_CRIACAO")
@@ -30,10 +30,6 @@ public class EntidadeBase {
     @Convert(converter = NumericBooleanConverter.class)
     @Column(name = "BO_EXCLUIDO", columnDefinition = "NUMERIC")
     protected Boolean excluido;
-
-    @Version
-    @Column(name = "NU_VERSAO", columnDefinition = "NUMERIC")
-    private Long versao;
 
     public Date getDataCriacao() {
         return dataCriacao;
@@ -81,14 +77,6 @@ public class EntidadeBase {
 
     public void setExcluido(Boolean excluido) {
         this.excluido = excluido;
-    }
-
-    public Long getVersao() {
-        return versao;
-    }
-
-    public void setVersao(Long versao) {
-        this.versao = versao;
     }
 
 }

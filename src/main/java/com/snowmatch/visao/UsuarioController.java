@@ -1,12 +1,14 @@
-package com.snowplat.megustas.dominio.visao;
+package com.snowmatch.visao;
 
-import com.snowplat.megustas.dominio.Usuario;
-import com.snowplat.megustas.dominio.dto.UsuarioDTO;
-import com.snowplat.megustas.dominio.visao.base.UsuarioBaseController;
-import com.snowplat.megustas.dominio.visao.interfaces.IUsuarioBaseController;
+import com.snowmatch.anotacoes.SnowRestController;
+import com.snowmatch.dominio.Usuario;
+import com.snowmatch.dominio.dto.UsuarioDTO;
+import com.snowmatch.visao.base.UsuarioBaseController;
+import com.snowmatch.visao.interfaces.IUsuarioBaseController;
 import java.util.List;
 import java.util.UUID;
 
+@SnowRestController
 public class UsuarioController extends UsuarioBaseController implements IUsuarioBaseController {
 
     @Override

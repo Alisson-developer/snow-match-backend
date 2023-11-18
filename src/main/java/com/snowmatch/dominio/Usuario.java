@@ -1,8 +1,9 @@
-package com.snowplat.megustas.dominio;
+package com.snowmatch.dominio;
 
-import com.snowplat.megustas.dominio.vo.EntidadeBase;
+import com.snowmatch.dominio.vo.EntidadeBase;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -10,21 +11,25 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 import org.hibernate.type.NumericBooleanConverter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "USUARIO")
-public class Usuario extends EntidadeBase {
+public class Usuario implements UserDetails {
 
     @Id
     @Column(name = "ID_USUARIO")
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nome;
 
     @Column(nullable = false)
@@ -51,6 +56,13 @@ public class Usuario extends EntidadeBase {
 
     @OneToMany(mappedBy = "usuarioDestinatario", fetch = FetchType.LAZY)
     private List<Match> idMatchCurtiram;
+
+    @Embedded
+    private EntidadeBase entidadeBase;
+
+    @Version
+    @Column(name = "NU_VERSAO", columnDefinition = "NUMERIC")
+    private Long versao;
 
     public UUID getId() {
         return id;
@@ -132,4 +144,54 @@ public class Usuario extends EntidadeBase {
         this.idMatchCurtiram = idMatchCurtiram;
     }
 
+    public EntidadeBase getEntidadeBase() {
+        return entidadeBase;
+    }
+
+    public void setEntidadeBase(EntidadeBase entidadeBase) {
+        this.entidadeBase = entidadeBase;
+    }
+
+    public Long getVersao() {
+        return versao;
+    }
+
+    public void setVersao(Long versao) {
+        this.versao = versao;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return nome;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }

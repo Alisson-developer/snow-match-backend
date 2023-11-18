@@ -1,11 +1,13 @@
-package com.snowplat.megustas.dominio.servico;
+package com.snowmatch.dominio.servico;
 
-import com.snowplat.megustas.dominio.Usuario;
-import com.snowplat.megustas.dominio.dto.UsuarioDTO;
-import com.snowplat.megustas.dominio.servico.base.UsuarioBaseSd;
+import com.snowmatch.dominio.Usuario;
+import com.snowmatch.dominio.dto.UsuarioDTO;
+import com.snowmatch.dominio.servico.base.UsuarioBaseSd;
 import java.util.List;
 import java.util.UUID;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UsuarioSd extends UsuarioBaseSd {
 
     @Override

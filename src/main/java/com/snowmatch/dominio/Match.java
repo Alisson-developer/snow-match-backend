@@ -1,6 +1,6 @@
-package com.snowplat.megustas.dominio;
+package com.snowmatch.dominio;
 
-import com.snowplat.megustas.dominio.vo.EntidadeBase;
+import com.snowmatch.dominio.vo.EntidadeBase;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Embedded;
@@ -18,7 +18,7 @@ import org.hibernate.type.NumericBooleanConverter;
 
 @Entity
 @Table(name = "MATCH")
-public class Match extends EntidadeBase {
+public class Match {
 
     @Id
     @Column(name = "ID_MATCH")
@@ -36,6 +36,13 @@ public class Match extends EntidadeBase {
     @Column(name = "BO_MATCH")
     @Convert(converter = NumericBooleanConverter.class)
     private Boolean isMatch;
+
+    @Embedded
+    private EntidadeBase entidadeBase;
+
+    @Version
+    @Column(name = "NU_VERSAO", columnDefinition = "NUMERIC")
+    private Long versao;
 
     public UUID getId() {
         return id;
@@ -69,4 +76,19 @@ public class Match extends EntidadeBase {
         this.isMatch = match;
     }
 
+    public EntidadeBase getEntidadeBase() {
+        return entidadeBase;
+    }
+
+    public void setEntidadeBase(EntidadeBase entidadeBase) {
+        this.entidadeBase = entidadeBase;
+    }
+
+    public Long getVersao() {
+        return versao;
+    }
+
+    public void setVersao(Long versao) {
+        this.versao = versao;
+    }
 }

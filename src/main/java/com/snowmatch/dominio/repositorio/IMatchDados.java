@@ -1,6 +1,6 @@
-package com.snowplat.megustas.dominio.repositorio;
+package com.snowmatch.dominio.repositorio;
 
-import com.snowplat.megustas.dominio.Match;
+import com.snowmatch.dominio.Match;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
