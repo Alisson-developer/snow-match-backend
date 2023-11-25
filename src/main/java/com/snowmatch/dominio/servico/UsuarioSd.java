@@ -1,5 +1,6 @@
 package com.snowmatch.dominio.servico;
 
+import com.snowmatch.anotacoes.SnowService;
 import com.snowmatch.dominio.Usuario;
 import com.snowmatch.dominio.dto.AutenticacaoDTO;
 import com.snowmatch.dominio.dto.LoginDTO;
@@ -12,9 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
 
-@Service
+@SnowService
 public class UsuarioSd extends UsuarioBaseSd {
 
     @Override
@@ -34,7 +34,6 @@ public class UsuarioSd extends UsuarioBaseSd {
         Authentication autenticacao = this.gerenciadorDeAutenticacao.authenticate(loginSenha);
 
         String token = tokenSd.gerarToken((Usuario) autenticacao.getPrincipal());
-        System.out.println(token);
         return ResponseEntity.status(HttpStatus.OK).body(new LoginDTO(token));
     }
 

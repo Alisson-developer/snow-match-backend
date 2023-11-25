@@ -1,5 +1,6 @@
 package com.snowmatch.config;
 
+import com.snowmatch.anotacoes.SnowAutowired;
 import com.snowmatch.dominio.Usuario;
 import com.snowmatch.dominio.repositorio.IUsuarioDados;
 import com.snowmatch.dominio.servico.TokenSd;
@@ -8,7 +9,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -17,10 +17,10 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
 
-    @Autowired
+    @SnowAutowired
     private TokenSd tokenSd;
 
-    @Autowired
+    @SnowAutowired
     private IUsuarioDados usuarioDados;
 
     @Override

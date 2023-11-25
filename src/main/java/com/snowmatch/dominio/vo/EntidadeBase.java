@@ -3,7 +3,6 @@ package com.snowmatch.dominio.vo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Version;
 import java.util.Date;
 import org.hibernate.type.NumericBooleanConverter;
 

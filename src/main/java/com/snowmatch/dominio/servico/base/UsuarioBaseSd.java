@@ -1,5 +1,8 @@
 package com.snowmatch.dominio.servico.base;
 
+import com.snowmatch.anotacoes.SnowAutowired;
+import com.snowmatch.anotacoes.SnowLazy;
+import com.snowmatch.anotacoes.SnowService;
 import com.snowmatch.dominio.Usuario;
 import com.snowmatch.dominio.dto.AutenticacaoDTO;
 import com.snowmatch.dominio.dto.LoginDTO;
@@ -15,28 +18,25 @@ import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import java.util.List;
 import java.util.UUID;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Service;
 
-@Service
+@SnowService
 public abstract class UsuarioBaseSd implements UserDetailsService {
 
     @PersistenceContext
     protected EntityManager entityManager;
 
-    @Autowired
+    @SnowAutowired
     protected IUsuarioDados usuarioDados;
 
-    @Autowired
-    @Lazy
+    @SnowAutowired
+    @SnowLazy
     protected AuthenticationManager gerenciadorDeAutenticacao;
 
-    @Autowired
+    @SnowAutowired
     protected TokenSd tokenSd;
 
     @Override

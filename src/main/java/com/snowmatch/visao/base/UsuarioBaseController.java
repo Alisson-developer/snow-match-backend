@@ -1,11 +1,11 @@
 package com.snowmatch.visao.base;
 
+import com.snowmatch.anotacoes.SnowAutowired;
 import com.snowmatch.dominio.servico.UsuarioSd;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class UsuarioBaseController {
 
-    @Autowired
+    @SnowAutowired
     protected UsuarioSd usuarioSd;
 
 }

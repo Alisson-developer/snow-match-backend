@@ -1,6 +1,6 @@
 package com.snowmatch.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.snowmatch.anotacoes.SnowAutowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class Configuracao {
 
-    @Autowired
+    @SnowAutowired
     private SecurityFilter filtroDeSeguranca;
 
     @Bean
