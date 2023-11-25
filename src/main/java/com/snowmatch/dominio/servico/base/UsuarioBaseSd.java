@@ -1,8 +1,11 @@
 package com.snowmatch.dominio.servico.base;
 
 import com.snowmatch.dominio.Usuario;
+import com.snowmatch.dominio.dto.AutenticacaoDTO;
+import com.snowmatch.dominio.dto.LoginDTO;
 import com.snowmatch.dominio.dto.UsuarioDTO;
 import com.snowmatch.dominio.repositorio.IUsuarioDados;
+import com.snowmatch.dominio.servico.TokenSd;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -13,9 +16,14 @@ import jakarta.persistence.criteria.Root;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Service;
 
+@Service
 public abstract class UsuarioBaseSd implements UserDetailsService {
 
     @PersistenceContext
@@ -24,12 +32,21 @@ public abstract class UsuarioBaseSd implements UserDetailsService {
     @Autowired
     protected IUsuarioDados usuarioDados;
 
+    @Autowired
+    @Lazy
+    protected AuthenticationManager gerenciadorDeAutenticacao;
+
+    @Autowired
+    protected TokenSd tokenSd;
+
     @Override
     public UserDetails loadUserByUsername(String nomeUsuario) {
         return usuarioDados.findByNome(nomeUsuario);
     }
 
-    public abstract void incluir(Usuario usuario);
+    public abstract ResponseEntity<LoginDTO> incluir(Usuario usuario);
+
+    public abstract ResponseEntity<LoginDTO> login(AutenticacaoDTO autenticacaoDTO);
 
     protected List<UsuarioDTO> obterTodos() {
         return obterAtivos();

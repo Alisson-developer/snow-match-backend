@@ -21,7 +21,7 @@ public class UsuarioDTO {
 
     public UsuarioDTO(Usuario usuario) {
         this.id = usuario.getId();
-        this.nome = usuario.getNome();
+        this.nome = usuario.getUsername();
         this.numero = concatenar(usuario.getDdd(), usuario.getNumeroTelefone());
         this.latitude = usuario.getLatitude();
         this.longitude = usuario.getLongitude();
